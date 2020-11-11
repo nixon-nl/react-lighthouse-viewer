@@ -11,6 +11,7 @@ export const Template = () => {
 
 export default function ReportViewer({
   id = 'react-lighthouse-viewer',
+  darkMode = false,
   json = {},
 }) {
   React.useEffect(() => {
@@ -34,8 +35,16 @@ export default function ReportViewer({
     features.initFeatures(json);
   };
 
+  const getClassNames = () => {
+    let className = "lh-root lh-vars";
+    if (darkMode) {
+      className += " dark"
+    }
+    return className;
+  }
+
   return (
-    <div className="lh-root lh-vars">
+    <div className={getClassNames()}>
       <Template />
       <div id={id} />
     </div>
